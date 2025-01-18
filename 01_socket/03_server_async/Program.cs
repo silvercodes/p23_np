@@ -3,7 +3,6 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 
-
 const string serverIp = "127.0.0.1";
 const int serverPort = 8080;
 
@@ -18,19 +17,28 @@ try
 
     Console.WriteLine($"Server started at {serverIp}:{serverPort}");
 
+    await RunProcessingAsync();
+}
+catch (Exception ex)
+{
+    Console.WriteLine(ex.Message);
+}
+
+async Task RunProcessingAsync()
+{
     while (true)
     {
-        Socket remoteSocket = socket.Accept();            // BLOCKING
+        Socket remoteSocket = await socket.AcceptAsync();
         Console.WriteLine("Connection opened...");
 
-        string message = ReadMessage(remoteSocket);
+        string message = await ReadMessageAsync(remoteSocket);
 
         Console.WriteLine($"{DateTime.Now.ToShortTimeString()}: {message}");
 
-        Thread.Sleep(2000);
+        await Task.Delay(2000);
 
         string response = "Hello from server! All OK!";
-        remoteSocket.Send(Encoding.UTF8.GetBytes(response));
+        await remoteSocket.SendAsync(Encoding.UTF8.GetBytes(response));
 
         remoteSocket.Shutdown(SocketShutdown.Both);
         remoteSocket.Close();
@@ -38,12 +46,7 @@ try
         Console.WriteLine("Connection closed...");
     }
 }
-catch (Exception ex)
-{
-    Console.WriteLine(ex.Message);
-}
-
-string ReadMessage(Socket remoteSocket)
+async Task<string> ReadMessageAsync(Socket remoteSocket)
 {
     byte[] buffer = new byte[1024];
     int byteCount = 0;
@@ -51,7 +54,7 @@ string ReadMessage(Socket remoteSocket)
 
     do
     {
-        byteCount = remoteSocket.Receive(buffer);       // BLOCKING
+        byteCount = await remoteSocket.ReceiveAsync(buffer);       // BLOCKING
         message += Encoding.UTF8.GetString(buffer, 0, byteCount);
 
     } while (remoteSocket.Available > 0);

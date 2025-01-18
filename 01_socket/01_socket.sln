@@ -5,9 +5,11 @@ VisualStudioVersion = 17.9.34607.119
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01_server", "01_server\01_server.csproj", "{B9FACD79-714E-49E6-B4CD-0CBAB76BC856}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02_client", "02_client\02_client.csproj", "{C91D878B-77F6-424F-A6E3-050BAA58B77C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02_client", "02_client\02_client.csproj", "{C91D878B-77F6-424F-A6E3-050BAA58B77C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03_server_async", "03_server_async\03_server_async.csproj", "{A1DEAB79-9571-41E5-8686-556F3B6DDDE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03_server_async", "03_server_async\03_server_async.csproj", "{A1DEAB79-9571-41E5-8686-556F3B6DDDE6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04_server_multi_threads", "04_server_multi_threads\04_server_multi_threads.csproj", "{95B2D580-8391-40F5-8FAA-46D15AB96B9E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{A1DEAB79-9571-41E5-8686-556F3B6DDDE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1DEAB79-9571-41E5-8686-556F3B6DDDE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1DEAB79-9571-41E5-8686-556F3B6DDDE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95B2D580-8391-40F5-8FAA-46D15AB96B9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95B2D580-8391-40F5-8FAA-46D15AB96B9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95B2D580-8391-40F5-8FAA-46D15AB96B9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95B2D580-8391-40F5-8FAA-46D15AB96B9E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
