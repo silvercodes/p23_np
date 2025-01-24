@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03_server_async", "03_serve
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04_server_multi_threads", "04_server_multi_threads\04_server_multi_threads.csproj", "{95B2D580-8391-40F5-8FAA-46D15AB96B9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05_client_with_cycle", "05_client_with_cycle\05_client_with_cycle.csproj", "{5EC8C886-8258-4357-B49E-6CE55F3CB707}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05_client_with_cycle", "05_client_with_cycle\05_client_with_cycle.csproj", "{5EC8C886-8258-4357-B49E-6CE55F3CB707}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06_udp_app", "06_udp_app\06_udp_app.csproj", "{6EBA59D0-AC50-435D-B000-729B869AF20A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{5EC8C886-8258-4357-B49E-6CE55F3CB707}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5EC8C886-8258-4357-B49E-6CE55F3CB707}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5EC8C886-8258-4357-B49E-6CE55F3CB707}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EBA59D0-AC50-435D-B000-729B869AF20A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EBA59D0-AC50-435D-B000-729B869AF20A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EBA59D0-AC50-435D-B000-729B869AF20A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EBA59D0-AC50-435D-B000-729B869AF20A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
