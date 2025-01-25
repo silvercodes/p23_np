@@ -1,4 +1,5 @@
-﻿using System.Net.Sockets;
+﻿using MTP;
+using System.Net.Sockets;
 
 namespace Server;
 
@@ -18,7 +19,14 @@ internal class Client
         {
             netStream = tcpClient.GetStream();
 
+            ProtoMessageBuilder builder = new ProtoMessageBuilder(netStream);
 
+            while (true)
+            {
+                ProtoMessage protoMessage = builder.Receive();
+
+
+            }
 
 
         }

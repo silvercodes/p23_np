@@ -2,7 +2,6 @@
 
 using Server;
 
-//ServerCore serverCore = new ServerCore();
-//await serverCore.StartAsync();
+ServerCore serverCore = new ServerCore();
 
-Console.WriteLine();
+await serverCore.StartAsync();
