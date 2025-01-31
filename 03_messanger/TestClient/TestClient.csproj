@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MTP\MTP.csproj" />
+    <ProjectReference Include="..\MTypes\MTypes.csproj" />
   </ItemGroup>
 
 </Project>
