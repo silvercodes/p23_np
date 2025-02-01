@@ -15,7 +15,7 @@ try
     using TcpClient tcpClient = new TcpClient(host, port);
     using NetworkStream netStream = tcpClient.GetStream();
 
-    ProtoMessage pm = new ProtoMessage()
+    ProtoMessage<AuthRequestPayload> pm = new ProtoMessage<AuthRequestPayload>()
     {
         Action = "auth"
     };

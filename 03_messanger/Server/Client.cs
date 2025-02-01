@@ -1,5 +1,6 @@
-﻿using MTP;
-using System.Net.Sockets;
+﻿using System.Net.Sockets;
+using MTP;
+using MTypes;
 
 namespace Server;
 
@@ -23,9 +24,16 @@ internal class Client
 
             while (true)
             {
-                ProtoMessage protoMessage = builder.Receive();
+                ProtoMessage<AuthRequestPayload> protoMessage = builder.Receive<AuthRequestPayload>();
+                Console.WriteLine("ProtoMessage received...");
+                //
+                //
 
+                AuthRequestPayload? p = protoMessage.GetPayload();
 
+              
+
+                
             }
 
 

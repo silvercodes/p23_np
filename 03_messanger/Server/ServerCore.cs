@@ -29,6 +29,7 @@ internal class ServerCore
             while (true)
             {
                 TcpClient tcpClient = await listener.AcceptTcpClientAsync();
+                Console.WriteLine("Client connected...");
 
                 Client client = new Client(tcpClient);
 

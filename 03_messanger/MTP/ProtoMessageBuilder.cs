@@ -1,4 +1,5 @@
 ﻿using System.Net.Sockets;
+using MTP.PayloadBase;
 
 namespace MTP;
 
@@ -10,25 +11,29 @@ public class ProtoMessageBuilder
     {
         this.netStream = netStream;
     }
-    public ProtoMessage Receive()
+    public ProtoMessage<T> Receive<T>()
+        where T : IPayload
     {
-        int readingSize = ConvertToInt(ReadBytes(ProtoMessage.MESSAGE_LEN_LABLE_SIZE));
+        int readingSize = ConvertToInt(ReadBytes(ProtoMessage<T>.MESSAGE_LEN_LABLE_SIZE));
 
         memStream = new MemoryStream(readingSize);
         memStream.Write(ReadBytes(readingSize), 0, readingSize);
         memStream.Position = 0;
 
-        ProtoMessage pm = new ProtoMessage();
+        ProtoMessage<T> pm = new ProtoMessage<T>();
 
         using StreamReader sr = new StreamReader(memStream);
 
         ExtractMetadata(pm, sr);
         ExtractPayloadStream(pm);
 
+        pm.InjectPayloadBuilder();
+
         return pm;
     }
 
-    private void ExtractMetadata(ProtoMessage pm, StreamReader sr)
+    private void ExtractMetadata<T>(ProtoMessage<T> pm, StreamReader sr)
+        where T : IPayload
     {
         sr.BaseStream.Position = 0;
 
@@ -39,7 +44,8 @@ public class ProtoMessageBuilder
             pm.SetHeader(headerLine);
     }
 
-    private void ExtractPayloadStream(ProtoMessage pm)
+    private void ExtractPayloadStream<T>(ProtoMessage<T> pm)
+        where T : IPayload
     {
         int payloadLength = pm.PaylodLength;
 

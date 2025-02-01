@@ -1,4 +1,4 @@
-﻿namespace MTypes;
+﻿namespace MTP.PayloadBase;
 
 public interface IPayload
 {

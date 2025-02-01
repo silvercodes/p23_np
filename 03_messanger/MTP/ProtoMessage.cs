@@ -1,8 +1,12 @@
-﻿using MTypes;
+﻿using System.Text.Json;
+using System.Text.Json.Serialization;
+using MTP.PayloadBase;
+using MTP.PayloadBuild;
 
 namespace MTP;
 
-public class ProtoMessage
+public class ProtoMessage<T>
+    where T : IPayload
 {
     private const char HEADER_SEPARATOR = ':';
     private const string HEADER_PAYLOAD_LEN_KEY = "len";
@@ -10,7 +14,7 @@ public class ProtoMessage
     internal const int MESSAGE_LEN_LABLE_SIZE = 4;
     public string? Action { get; set; }
     internal Dictionary<string, string> Headers { get; set; } = new Dictionary<string, string>();
-    public IPayload? Payload { get; private set; }
+    public T? Payload { get; private set; }
     public MemoryStream? PayloadStream { get; internal set; }
     public int PaylodLength
     {
@@ -23,6 +27,17 @@ public class ProtoMessage
 
             return Convert.ToInt32(value);
         }
+    }
+    private IPayloadBuilder<T> PayloadBuilder { get; set; }
+
+    public void InjectPayloadBuilder()
+    {
+        PayloadBuilder = Headers[HEADER_PAYLOAD_TYPE_KEY] switch
+        {
+            "json" => new JsonPayloadBuilder<T>(),
+
+            _ => throw new InvalidOperationException()
+        };
     }
 
     public void SetHeader(string key, string value)
@@ -38,7 +53,7 @@ public class ProtoMessage
 
         SetHeader(chunks[0], chunks[1]);
     }
-    public void SetPayload(IPayload payload)
+    public void SetPayload(T payload)
     {
         Payload = payload;
 
@@ -46,6 +61,10 @@ public class ProtoMessage
 
         Headers[HEADER_PAYLOAD_LEN_KEY] = PayloadStream.Length.ToString();
         Headers[HEADER_PAYLOAD_TYPE_KEY] = Payload.PType;
+    }
+    public T? GetPayload()
+    {
+        return PayloadBuilder.BuildFromStream(PayloadStream);
     }
 
     public MemoryStream GetStream()
